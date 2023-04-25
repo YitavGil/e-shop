@@ -1,11 +1,13 @@
-
+import { BrowserRouter, Routes, Route  } from 'react-router-dom';
+import { LoginPage } from "./Routes.js" 
 function App() {
 
   return (
-<div>
-  <h1 className='text-indigo-400 text-lg'>demn boiii</h1>
-  <p className="text-3xl font-bold underline">shit </p>
-</div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/login' element={<LoginPage />} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 

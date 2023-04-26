@@ -18,8 +18,9 @@ const Signup = () => {
 
   }
 
-  const handleFileInputChange = () => {
-
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    setAvatar(file);
   }
 
 

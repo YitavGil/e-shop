@@ -15,7 +15,6 @@ const Signup = () => {
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
- 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
@@ -23,8 +22,21 @@ const Signup = () => {
 
   const handleSubmit = () => {
     const newForm = new FormData();
-    
-    axios.post(`${server}/user/create-user`)
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    newForm.append("file", avatar);
+    newForm.append("name", name);
+    newForm.append("email", email);
+    newForm.append("password", password);
+
+    axios
+      .post(`${server}/user/create-user`, newForm, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -162,7 +174,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

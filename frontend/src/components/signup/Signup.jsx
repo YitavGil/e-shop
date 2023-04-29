@@ -4,6 +4,7 @@ import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
+import { server } from "../../server";
 
 import { toast } from "react-toastify";
 
@@ -14,15 +15,17 @@ const Signup = () => {
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
-  const handleSubmit = () => {
-
-  }
-
+ 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
-  }
+  };
 
+  const handleSubmit = () => {
+    const newForm = new FormData();
+    
+    axios.post(`${server}/user/create-user`)
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col py-12 sm:px-6 lg:px-8">

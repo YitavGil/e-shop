@@ -8,6 +8,7 @@ const app = express()
 
 app.use(express.json());
 app.use(cookieParser());
+app.use("/", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 //config 
@@ -17,6 +18,10 @@ if(process.env.NODE_ENV !== 'PRODUCTION'){
   })
 };
 
+//import routes
+const user = require("./controller/userController");
+
+app.use("/api/v2/user", user)
 
 
 module.exports = app;

@@ -20,7 +20,8 @@ const Signup = () => {
     setAvatar(file);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newForm = new FormData();
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 

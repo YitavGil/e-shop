@@ -5,6 +5,7 @@ const router = express.Router();
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 const fs = require("fs");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken")
 
 router.post("/create-user", upload.single("file"), async (req, res, next) => {

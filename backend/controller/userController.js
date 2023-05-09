@@ -24,7 +24,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
           res.status(500).json({ message: "Error deleting file" });
         }
       });
-      return next(new ErrorHandler("User already exists", 400));
+      return res.status(400).json({msg: "This email address is already being used."})
     }
 
     const filename = req.file.filename;
@@ -39,7 +39,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
+    const activationUrl = `http://127.0.0.1:5173/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -49,7 +49,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
       });
       res.status(201).json({
         success: true,
-        message: `please check your email:- ${user.email} to activate your account!`,
+        message: `please check your email: ${user.email} to activate your account!`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -65,6 +65,7 @@ const createActivationToken = (user) => {
     expiresIn: "5m",
   });
 };
+
 
 // activate user
 router.post(
@@ -86,7 +87,7 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return next(new ErrorHandler("User already exists", 400));
+        return res.status(400).json({msg: "This email address is already being used."})
       }
       user = await User.create({
         name,

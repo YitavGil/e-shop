@@ -125,10 +125,32 @@ router.post(
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
-        return res.status(400).json({ msg: "Please enter a valid password" });
+        return res.status(400).json({ msg: "Wrong email or password" });
       }
 
       sendToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// load user
+router.get(
+  "/getuser",
+  isAuthenticated,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user.id);
+
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
+
+      res.status(200).json({
+        success: true,
+        user,
+      });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }

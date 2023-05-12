@@ -36,8 +36,8 @@ const Signup = () => {
         toast.success(`Success! ${res.data.message}`);
         setEmail('');
         setName('');
-        setVisible('');
-        setAvatar('');
+        setPassword('');
+        setAvatar(null);
       })
       .catch((err) => {
        toast.error(err.response.data.msg)

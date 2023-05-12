@@ -8,7 +8,7 @@ const fs = require("fs");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendMail = require("../utils/sendMail");
 const jwt = require("jsonwebtoken");
-const sendToken = require('../utils/jwtToken');
+const sendToken = require("../utils/jwtToken");
 
 router.post("/create-user", upload.single("file"), async (req, res, next) => {
   try {
@@ -24,7 +24,9 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
           res.status(500).json({ message: "Error deleting file" });
         }
       });
-      return res.status(400).json({msg: "This email address is already being used."})
+      return res
+        .status(400)
+        .json({ msg: "This email address is already being used." });
     }
 
     const filename = req.file.filename;
@@ -66,7 +68,6 @@ const createActivationToken = (user) => {
   });
 };
 
-
 // activate user
 router.post(
   "/activation",
@@ -87,7 +88,9 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return res.status(400).json({msg: "This email address is already being used."})
+        return res
+          .status(400)
+          .json({ msg: "This email address is already being used." });
       }
       user = await User.create({
         name,
@@ -103,6 +106,33 @@ router.post(
   })
 );
 
+// login user
+router.post(
+  "/login-user",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+      if (!email || !password) {
+        return res.status(400).json({ msg: "Please provide missing fields." });
+      }
 
+      const user = await User.findOne({ email }).select("+password");
+
+      if (!user) {
+        return res.status(400).json({ msg: "User doesn't exist." });
+      }
+
+      const isPasswordValid = await user.comparePassword(password);
+
+      if (!isPasswordValid) {
+        return res.status(400).json({ msg: "Please enter a valid password" });
+      }
+
+      sendToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
 
 module.exports = router;

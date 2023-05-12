@@ -9,6 +9,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendMail = require("../utils/sendMail");
 const jwt = require("jsonwebtoken");
 const sendToken = require("../utils/jwtToken");
+const { isAuthenticated } = require("../middleware/auth");
 
 router.post("/create-user", upload.single("file"), async (req, res, next) => {
   try {
@@ -144,7 +145,7 @@ router.get(
       const user = await User.findById(req.user.id);
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists", 400));
+        return res.status(400).json({ msg: "User dows not exists" });
       }
 
       res.status(200).json({

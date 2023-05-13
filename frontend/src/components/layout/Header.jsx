@@ -18,7 +18,9 @@ const Header = () => {
     const filteredProducts =
       productData &&
       productData.filter((product) => {
-        product.name.toLocaleLowerCase().includes(term.toLocaleLowerCase());
+        return product.name
+          .toLocaleLowerCase()
+          .includes(term.toLocaleLowerCase());
       });
     setSearchData(filteredProducts);
   };
@@ -38,11 +40,35 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search Game"
-            value={searchData}
+            value={searchTerm}
             onChange={handleSearch}
             className="h-10 w-full px-2 border-[#3957db] border-2 rounded-md"
           />
           <SearchIcon className="absolute right-2 top-2 cursor-pointer" />
+          {searchData && searchData.length !== 0 ? (
+            <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-9 p-4">
+              {searchData &&
+                searchData.map((item, index) => {
+                  const d = item.name;
+
+                  const productName = d.replace(/\s+/g, "-");
+                  return (
+                    <Link key={index} to={`/product/${productName}`}>
+                      <div className="w-full flex items-start py-3">
+                        <img
+                          src={item.image_Url[0].url}
+                          alt=""
+                          className="w-10 h-10 mr-3"
+                        />
+                        <h1>{item.name}</h1>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

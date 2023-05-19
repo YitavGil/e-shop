@@ -2,7 +2,9 @@ import { useState } from "react";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { categoriesData, productData } from "../../static/data";
-import DropDown from "./DropDown"
+import DropDown from "./DropDown";
+import Navbar from "./Navbar";
+import PropTypes from 'prop-types';
 
 // icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -11,7 +13,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const Header = () => {
+const Header = ({ activeHeading }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState("");
   const [active, setActive] = useState(false);
@@ -122,9 +124,11 @@ const Header = () => {
                     categoriesData={categoriesData}
                     setDropDown={setDropDown}
                   />
-                ) : (
-                  null
-                )}
+                ) : null}
+                {/* MavItems */}
+                <div className={`${styles.noramlFlex}`}>
+                  <Navbar active={activeHeading} />
+                </div>
               </div>
             </div>
           </div>
@@ -135,3 +139,7 @@ const Header = () => {
 };
 
 export default Header;
+
+Header.prototype ={
+  activeHeading: PropTypes.number
+}

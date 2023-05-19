@@ -1,15 +1,21 @@
 import { useState } from "react";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
-import { productData } from "../../static/data";
+import { categoriesData, productData } from "../../static/data";
+import DropDown from "./DropDown"
 
 // icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import SearchIcon from "@mui/icons-material/Search";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState("");
+  const [active, setActive] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -24,54 +30,107 @@ const Header = () => {
       });
     setSearchData(filteredProducts);
   };
-  return (
-    <div className={`${styles.section}`}>
-      <div className="hidden sm:h-12 sm:my-5 sm:flex items-center justify-between">
-        <div className="flex items-center">
-          <Link to="/">
-            <SportsEsportsIcon fontSize="large" sx={{ color: "green" }} />
-          </Link>
-          <h3 style={{ fontFamily: "roboto" }} className="text-xl font-bold">
-            GamerLy
-          </h3>
-        </div>
-        {/* Search */}
-        <div className="w-1/2 relative">
-          <input
-            type="text"
-            placeholder="Search Game"
-            value={searchTerm}
-            onChange={handleSearch}
-            className="h-10 w-full px-2 border-[#3957db] border-2 rounded-md"
-          />
-          <SearchIcon className="absolute right-2 top-2 cursor-pointer" />
-          {searchData && searchData.length !== 0 ? (
-            <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-9 p-4">
-              {searchData &&
-                searchData.map((item, index) => {
-                  const d = item.name;
 
-                  const productName = d.replace(/\s+/g, "-");
-                  return (
-                    <Link key={index} to={`/product/${productName}`}>
-                      <div className="w-full flex items-start py-3">
-                        <img
-                          src={item.image_Url[0].url}
-                          alt=""
-                          className="w-10 h-10 mr-3"
-                        />
-                        <h1>{item.name}</h1>
-                      </div>
-                    </Link>
-                  );
-                })}
+  window.addEventListener("scroll", () => {
+    if (window.screenY > 70) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  });
+
+  return (
+    <>
+      <div className={`${styles.section}`}>
+        <div className="hidden sm:h-12 sm:my-5 sm:flex items-center justify-between">
+          <div className="flex items-center">
+            <Link to="/">
+              <SportsEsportsIcon fontSize="large" sx={{ color: "#4FAF44" }} />
+            </Link>
+            <h3 style={{ fontFamily: "roboto" }} className="text-xl font-bold">
+              GamerLy
+            </h3>
+          </div>
+          {/* Search */}
+          <div className="w-1/2 relative">
+            <input
+              type="text"
+              placeholder="Search Game"
+              value={searchTerm}
+              onChange={handleSearch}
+              className="h-10 w-full px-2 border-[#3957db] border-2 rounded-md"
+            />
+            <SearchIcon className="absolute right-2 top-2 cursor-pointer" />
+            {searchData && searchData.length !== 0 ? (
+              <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-9 p-4">
+                {searchData &&
+                  searchData.map((item, index) => {
+                    const d = item.name;
+
+                    const productName = d.replace(/\s+/g, "-");
+                    return (
+                      <Link key={index} to={`/product/${productName}`}>
+                        <div className="w-full flex items-start py-3">
+                          <img
+                            src={item.image_Url[0].url}
+                            alt=""
+                            className="w-10 h-10 mr-3"
+                          />
+                          <h1>{item.name}</h1>
+                        </div>
+                      </Link>
+                    );
+                  })}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+
+          <div className={`${styles.button}`}>
+            <Link to="/seller">
+              <h1 className="text-[#fff] flex items-center">
+                Become Seller
+                <ArrowForwardIcon className="ml-1" />
+              </h1>
+            </Link>
+          </div>
+        </div>
+        <div
+          className={`${
+            active ? "shadow-sm fixed top-0 left-0 z-10" : null
+          } transition hidden sm:flex items-center justify-between w-full bg-[#2A3492] h-[70px]`}
+        >
+          <div
+            className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
+          >
+            {/* categories */}
+            <div>
+              <div className="relative h-[60px] mt-3 w-[270px] hidden md:block">
+                <AlignHorizontalLeftIcon className="absolute top-4 left-2" />
+                <button
+                  className={`h-full w-full flex justify-between items-center pl-10 bg-white font-sans text-lg font-medium select-none rounded-t-md`}
+                >
+                  All Categories
+                </button>
+                <KeyboardArrowDownIcon
+                  className="absolute right-2 top-4 cursor-pointer"
+                  onClick={() => setDropDown(!dropDown)}
+                />
+                {dropDown ? (
+                  <DropDown
+                    categoriesData={categoriesData}
+                    setDropDown={setDropDown}
+                  />
+                ) : (
+                  null
+                )}
+              </div>
             </div>
-          ) : (
-            ""
-          )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

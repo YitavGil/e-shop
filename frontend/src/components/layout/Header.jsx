@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { categoriesData, productData } from "../../static/data";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -12,6 +12,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Header = ({ activeHeading }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -125,9 +128,44 @@ const Header = ({ activeHeading }) => {
                     setDropDown={setDropDown}
                   />
                 ) : null}
-                {/* MavItems */}
-                <div className={`${styles.noramlFlex}`}>
-                  <Navbar active={activeHeading} />
+              </div>
+            </div>
+            {/* NavItems */}
+            <div className={`${styles.noramlFlex}`}>
+              <Navbar active={activeHeading} />
+            </div>
+
+            <div className="flex">
+              <div className={`${styles.noramlFlex}`}>
+                <div className="relative cursor-pointer mr-[15px]">
+                  <FavoriteBorderIcon
+                    f
+                    sx={{ color: "rgb(255, 255, 255, 0.83)" }}
+                  />
+                  <span className="absolute right-0 left-[13px] top-[-5px] rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
+                    0
+                  </span>
+                </div>
+              </div>
+              <div className={`${styles.noramlFlex}`}>
+                <div className="relative cursor-pointer mr-[15px]">
+                  <ShoppingCartIcon
+                    f
+                    sx={{ color: "rgb(255, 255, 255, 0.83)" }}
+                  />
+                  <span className="absolute right-0 left-[13px] top-[-5px] rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
+                    0
+                  </span>
+                </div>
+              </div>
+              <div className={`${styles.noramlFlex}`}>
+                <div className="relative cursor-pointer mr-[15px]">
+                  <Link to="/login">
+                    <AccountCircleIcon
+                      f
+                      sx={{ color: "rgb(255, 255, 255, 0.83)" }}
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -140,6 +178,6 @@ const Header = ({ activeHeading }) => {
 
 export default Header;
 
-Header.prototype ={
-  activeHeading: PropTypes.number
-}
+Header.propTypes = {
+  activeHeading: PropTypes.number,
+};

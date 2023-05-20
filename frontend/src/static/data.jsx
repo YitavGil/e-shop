@@ -198,44 +198,44 @@ export const categoriesData = [
   },
   {
     id: 2,
-    title: "cosmetics and body care",
+    title: "Playstation",
     subTitle: "",
     image_Url:
-      "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
+      "https://download.logo.wine/logo/PlayStation/PlayStation-Logo.wine.png",
   },
   {
     id: 3,
-    title: "Accesories",
+    title: "Nintendo Switch",
     subTitle: "",
     image_Url:
-      "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+      "https://brandslogo.net/wp-content/uploads/2016/10/nintendo-switch-logo-preview.png",
   },
   {
     id: 4,
-    title: "Cloths",
+    title: "X-Box",
     subTitle: "",
     image_Url:
-      "https://www.shift4shop.com/2015/images/industries/clothing/clothing-apparel.png",
+      "https://static.vecteezy.com/system/resources/previews/020/975/583/original/xbox-logo-xbox-icon-transparent-free-png.png",
   },
   {
     id: 5,
-    title: "Shoes",
+    title: "Retro Games",
     subTitle: "",
     image_Url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvBQPQMVNRd6TtDkGs2dCri0Y-rxKkFOiEWw&usqp=CAU",
+      "https://static.vecteezy.com/system/resources/thumbnails/013/742/487/small/old-retro-vintage-hipster-joystick-with-buttons-for-game-video-console-for-gamers-from-70s-80s-90s-beautiful-white-icon-illustration-vector.jpg",
   },
   {
     id: 6,
-    title: "Gifts",
+    title: "PC games",
     subTitle: "",
     image_Url:
-      "https://securecdn.pymnts.com/wp-content/uploads/2014/11/Gifts-Photo-700x489.jpg",
+      "https://blogs.windows.com/wp-content/uploads/prod/2020/08/windows-logo-social.png",
   },
   {
     id: 7,
-    title: "Pet Care",
+    title: "VR",
     subTitle: "",
-    image_Url: "https://cdn.openpr.com/T/c/Tc15444071_g.jpg",
+    image_Url: "https://1000logos.net/wp-content/uploads/2021/12/Oculus-Logo-2015.png",
   },
   {
     id: 8,
@@ -246,7 +246,7 @@ export const categoriesData = [
   },
   {
     id: 9,
-    title: "Music and Gaming",
+    title: "Accessories",
     subTitle: "",
     image_Url:
       "https://static.vecteezy.com/system/resources/previews/011/996/555/original/3d-black-headphone-illustration-ecommerce-icon-png.png",

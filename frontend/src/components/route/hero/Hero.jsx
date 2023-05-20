@@ -10,7 +10,7 @@ const Hero = () => {
           "url(https://pbs.twimg.com/media/D27eB5WUkAEMJHZ.jpg:large",
       }}
     >
-      <div style={{ background: " rgba(207, 33, 21, 0.35)" }}>
+      <div style={{ background: " rgba(207, 33, 21, 0.5)" }}>
         <div className={`${styles.section} w-[90%] sm:w-[60%]`}>
           <h1
             className={`text-[35px] leading-[1.2] sm:text-[60px] text-[#ffffffe8] font-[600] capitalize`}

@@ -139,7 +139,6 @@ const Header = ({ activeHeading }) => {
               <div className={`${styles.noramlFlex}`}>
                 <div className="relative cursor-pointer mr-[15px]">
                   <FavoriteBorderIcon
-                    f
                     sx={{ color: "rgb(255, 255, 255, 0.83)" }}
                   />
                   <span className="absolute right-0 left-[13px] top-[-5px] rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
@@ -150,7 +149,6 @@ const Header = ({ activeHeading }) => {
               <div className={`${styles.noramlFlex}`}>
                 <div className="relative cursor-pointer mr-[15px]">
                   <ShoppingCartIcon
-                    f
                     sx={{ color: "rgb(255, 255, 255, 0.83)" }}
                   />
                   <span className="absolute right-0 left-[13px] top-[-5px] rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
@@ -162,7 +160,6 @@ const Header = ({ activeHeading }) => {
                 <div className="relative cursor-pointer mr-[15px]">
                   <Link to="/login">
                     <AccountCircleIcon
-                      f
                       sx={{ color: "rgb(255, 255, 255, 0.83)" }}
                     />
                   </Link>

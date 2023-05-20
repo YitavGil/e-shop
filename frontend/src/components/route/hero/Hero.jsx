@@ -15,7 +15,7 @@ const Hero = () => {
           <h1
             className={`text-[35px] leading-[1.2] sm:text-[60px] text-[#ffffffe8] font-[600] capitalize`}
           >
-            Best Collection for your Gaming Room
+            Upgrade Your gaming collection
           </h1>
           <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#ffffffe8]">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,

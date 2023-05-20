@@ -37,7 +37,7 @@ const Header = ({ activeHeading }) => {
   };
 
   window.addEventListener("scroll", () => {
-    if (window.screenY > 70) {
+    if (window.scrollY > 70) {
       setActive(true);
     } else {
       setActive(false);
@@ -103,14 +103,14 @@ const Header = ({ activeHeading }) => {
         </div>
         <div
           className={`${
-            active ? "shadow-sm fixed top-0 left-0 z-10" : null
+            active ? "shadow-sm fixed w-[91.72%] top-0 left-17 z-10" : null
           } transition hidden sm:flex items-center justify-between w-full bg-[#2A3492] h-[70px]`}
         >
           <div
             className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
           >
             {/* categories */}
-            <div>
+            <div onClick={() => setDropDown(!dropDown)}>
               <div className="relative h-[60px] mt-3 w-[270px] hidden md:block">
                 <AlignHorizontalLeftIcon className="absolute top-4 left-2" />
                 <button

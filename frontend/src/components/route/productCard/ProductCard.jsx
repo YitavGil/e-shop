@@ -39,11 +39,42 @@ const ProductCard = ({ data }) => {
           </h4>
 
           <div className="flex">
-            <AiFillStar color="#f6ba00" className="mr-2 cursor-pointer" />
-            <AiFillStar color="#f6ba00" className="mr-2 cursor-pointer" />
-            <AiFillStar color="#f6ba00" className="mr-2 cursor-pointer" />
-            <AiFillStar color="#f6ba00" className="mr-2 cursor-pointer" />
-            <AiFillStar color="#f6ba00" className="mr-2 cursor-pointer" />
+            <AiFillStar
+              color="#f6ba00"
+              size={20}
+              className="mr-2 cursor-pointer"
+            />
+            <AiFillStar
+              color="#f6ba00"
+              size={20}
+              className="mr-2 cursor-pointer"
+            />
+            <AiFillStar
+              color="#f6ba00"
+              size={20}
+              className="mr-2 cursor-pointer"
+            />
+            <AiFillStar
+              color="#f6ba00"
+              size={20}
+              className="mr-2 cursor-pointer"
+            />
+            <AiFillStar
+              color="#f6ba00"
+              size={20}
+              className="mr-2 cursor-pointer"
+            />
+          </div>
+
+          <div className="py-2 flex items-center justify-between">
+            <div className="flex">
+              <h5 className={`${styles.productDiscountPrice}`}>
+                {data.price === 0
+                  ? data.price
+                  : data.price}
+                $
+              </h5>
+            </div>
           </div>
         </Link>
       </div>

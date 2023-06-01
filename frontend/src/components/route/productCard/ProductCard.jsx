@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
+import ProductDetailsCard from "../roduct-details/ProductDetailsCard"
 
 const ProductCard = ({ data }) => {
   const [click, setClick] = useState(false);
@@ -17,6 +18,10 @@ const ProductCard = ({ data }) => {
 
   const d = data.name;
   const product_name = d.replace(/\s+/g, "-");
+
+  const addToCartHandler = () => {
+
+  }
 
   return (
     <>
@@ -115,7 +120,7 @@ const ProductCard = ({ data }) => {
             color="#444"
             title="Add to cart"
           />
-          {/* {open ? <ProductDetailsCard setOpen={setOpen} data={data} /> : null} */}
+          {open ? <ProductDetailsCard setOpen={setOpen} data={data} /> : null}
             </div>
           }
         </div>

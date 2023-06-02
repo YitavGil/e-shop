@@ -17,9 +17,15 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
   const handleMessageSubmit = () => {};
 
-  const decrementCount = () => {};
-
-  const incrementCount = () => {};
+  const decrementCount = () => {
+    if (count > 1) {
+      setCount(prev => prev - 1);
+    }
+  };
+ 
+  const incrementCount = () => {
+    setCount(prev => prev + 1);
+  };
 
   return (
     <div className="bg-[#fff]">
@@ -76,7 +82,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                   >
                     -
                   </button>
-                  <span className="bg-gray-200 text-gray-800 font-medium px-4 py-[9px]">
+                  <span className="bg-gray-200 text-gray-800 font-medium px-4 pt-[9px] pb-[10px]">
                     {count}
                   </span>
                   <button

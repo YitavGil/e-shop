@@ -19,18 +19,30 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
   const decrementCount = () => {
     if (count > 1) {
-      setCount(prev => prev - 1);
+      setCount((prev) => prev - 1);
     }
   };
- 
+
   const incrementCount = () => {
-    setCount(prev => prev + 1);
+    setCount((prev) => prev + 1);
   };
+
+  const removeFromWishlistHandler = () => {
+    setClick(!click);
+  };
+
+  const addToWishlistHandler = () => {
+    setClick(!click);
+  };
+
+  const addToCartHandler = () => {
+
+  }
 
   return (
     <div className="bg-[#fff]">
       <div className="fixed w-full h-screen top-0 left-0 bg-[#00000030] z-40 flex items-center justify-center">
-        <div className="w-[90%] 800px:w-[60%] h-[90vh] overflow-y-scroll 800px:h-[75vh] bg-white rounded-md shadow-sm relative p-4">
+        <div className="w-[90%] sm:w-[60%] h-[90vh] overflow-y-scroll sm:h-[75vh] bg-white rounded-md shadow-sm relative p-4">
           <RxCross1
             size={30}
             className="absolute right-3 top-3 z-50 cursor-pointer"
@@ -92,6 +104,33 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                     +
                   </button>
                 </div>
+                <div>
+                  {click ? (
+                    <AiFillHeart
+                      size={30}
+                      className="cursor-pointer"
+                      onClick={() => removeFromWishlistHandler(data)}
+                      color={click ? "red" : "#333"}
+                      title="Remove from wishlist"
+                    />
+                  ) : (
+                    <AiOutlineHeart
+                      size={30}
+                      className="cursor-pointer"
+                      onClick={() => addToWishlistHandler(data)}
+                      title="Add to wishlist"
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div
+                className={`${styles.button} mt-6 rounded-[4px] h-11 flex items-center`}
+                onClick={() => addToCartHandler(data._id)}
+              >
+                <span className="text-[#fff] flex items-center">
+                  Add to cart <AiOutlineShoppingCart className="ml-1" />
+                </span>
               </div>
             </div>
           </div>

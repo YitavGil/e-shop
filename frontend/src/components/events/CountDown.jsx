@@ -40,8 +40,16 @@ const CountDown = () => {
       </span>
     );
   });
-
-  return <div>CountDown</div>;
+  
+  return (
+    <div>
+      {timerComponents.length ? (
+        timerComponents
+      ) : (
+        <span className="text-[red] text-[25px]">Time's Up</span>
+      )}
+    </div>
+  );
 };
 
 export default CountDown;

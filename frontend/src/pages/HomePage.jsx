@@ -4,6 +4,7 @@ import Categories from '../components/route/category/Categories';
 import BestDeals from '../components/route/bestDeals/BestDeals';
 import FeaturedProducts from '../components/route/FeaturedProducts';
 import Events from '../components/events/Events';
+import Sponsored from '../components/route/Sponsored'
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <BestDeals />
       <Events />
       <FeaturedProducts />
+      <Sponsored />
     </div>
   )
 }

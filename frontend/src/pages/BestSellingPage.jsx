@@ -1,30 +1,21 @@
 import { useState, useEffect } from "react";
 import Header from "../components/layout/Header";
 import styles from "../styles/styles";
-import { useSearchParams } from "react-router-dom";
 import { productData } from "../static/data";
 import ProductCard from "../components/route/productCard/ProductCard";
 
-const ProductsPage = () => {
-  const [searchParams] = useSearchParams();
-  const categoryData = searchParams.get("category");
+const BestSellingPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (categoryData === null) {
-      const d =
-        productData && productData.sort((a, b) => a.total_sell - b.total_sell);
+    const d =
+      productData && productData.sort((a, b) => b.total_sell - a.total_sell);
       setData(d);
-    } else {
-      const d =
-        productData && productData.filter((i) => i.category === categoryData);
-      setData(d);
-    }
-  }, [categoryData]);
+  }, []);
 
   return (
     <div>
-      <Header activeHeading={3} />
+      <Header activeHeading={2} />
       <br />
       <br />
       <div className={`${styles.section}`}>
@@ -34,14 +25,10 @@ const ProductsPage = () => {
               return <ProductCard data={item} key={index} />;
             })}
         </div>
-        {data && data.length === 0 ? (
-          <h1 className="text-center w-full pb-[100px] text-[20px]">
-            No products Found!
-          </h1>
-        ) : null}
+     
       </div>
     </div>
   );
 };
 
-export default ProductsPage;
+export default BestSellingPage;

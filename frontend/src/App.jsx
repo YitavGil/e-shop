@@ -1,27 +1,34 @@
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route  } from 'react-router-dom';
-import { LoginPage, SignupPage, ActivationPage, HomePage } from "./Routes.js"; 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import store from './redux/store.js';
-import { loadUser } from './redux/actions/userActions.js';
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  LoginPage,
+  SignupPage,
+  ActivationPage,
+  HomePage,
+  ProductsPage,
+} from "./Routes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import store from "./redux/store";
+import { loadUser } from "./redux/actions/userActions";
 
 function App() {
   useEffect(() => {
-    store.dispatch(loadUser())
-  },[])
+    store.dispatch(loadUser());
+  }, []);
   return (
     <BrowserRouter>
-    <Routes>
-    <Route path='/' element={<HomePage />} />
-      <Route path='/login' element={<LoginPage />} />
-      <Route path='/sign-up' element={<SignupPage />} />
-      <Route
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/sign-up" element={<SignupPage />} />
+        <Route
           path="/activation/:activation_token"
           element={<ActivationPage />}
         />
-    </Routes>
-    <ToastContainer
+        <Route path="/products" element={<ProductsPage />} />
+      </Routes>
+      <ToastContainer
         position="bottom-left"
         autoClose={5000}
         hideProgressBar={false}
@@ -34,7 +41,7 @@ function App() {
         theme="dark"
       />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

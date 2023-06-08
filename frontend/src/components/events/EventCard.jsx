@@ -1,10 +1,11 @@
-import React from "react";
 import styles from "../../styles/styles";
 import CountDown from "./CountDown";
+import PropTypes from "prop-types";
 
-const EventCard = () => {
+const EventCard = ({ active }) => {
+  console.log(active);
   return (
-    <div className={`w-full block bg-white rounded-lg lg:flex p-2 mb-12`}>
+    <div className={`w-full block bg-white rounded-lg ${active ? "" : "mb-12"} lg:flex p-2`}>
       <div className="w-full lg:w-1/2 m-auto">
         <img
           src="https://www.ivory.co.il/files/catalog/org/1683624597g97Su.jpg"
@@ -44,3 +45,8 @@ const EventCard = () => {
 };
 
 export default EventCard;
+
+EventCard.propTypes = {
+  active: PropTypes.bool,
+};
+

@@ -26,8 +26,6 @@ const Header = ({ activeHeading }) => {
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
 
-  console.log(loading);
-
   const handleSearch = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -174,9 +172,9 @@ const Header = ({ activeHeading }) => {
                     </Link>
                   ) : (
                     <Link to="/login">
-                      <AccountCircleIcon
+                   { loading ? <CircularProgress color="success" /> : <AccountCircleIcon
                         sx={{ color: "rgb(255, 255, 255, 0.83)" }}
-                      />
+                      />}
                     </Link>
                   )}
                 </div>

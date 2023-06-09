@@ -14,11 +14,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "./redux/store";
 import { loadUser } from "./redux/actions/userActions";
-import { useSelector } from "react-redux";
 
 function App() {
-  const { loading } = useSelector((state) => state.user);
-
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);

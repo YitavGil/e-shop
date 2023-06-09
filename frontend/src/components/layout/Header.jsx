@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { categoriesData, productData } from "../../static/data";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { backend_url } from "../../server";
+import CircularProgress from '@mui/material/CircularProgress';
 
 // icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -17,10 +20,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Header = ({ activeHeading }) => {
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState("");
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
+
+  console.log(loading);
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -103,7 +109,7 @@ const Header = ({ activeHeading }) => {
         </div>
         <div
           className={`${
-            active ? "shadow-sm fixed w-[91.69%] top-0 left-17 z-10" : null
+            active ? "shadow-sm fixed w-[91.70%] top-0 left-17 z-10" : null
           } transition hidden sm:flex items-center justify-between w-full bg-[#2A3492] h-[70px]`}
         >
           <div
@@ -158,11 +164,21 @@ const Header = ({ activeHeading }) => {
               </div>
               <div className={`${styles.noramlFlex}`}>
                 <div className="relative cursor-pointer mr-[15px]">
-                  <Link to="/login">
-                    <AccountCircleIcon
-                      sx={{ color: "rgb(255, 255, 255, 0.83)" }}
-                    />
-                  </Link>
+                  {isAuthenticated ? (
+                    <Link to="/profile">
+                      <img
+                        src={`${backend_url}/${user.avatar}`}
+                        alt=""
+                        className="w-[35px] h-[35px] rounded-full"
+                      />
+                    </Link>
+                  ) : (
+                    <Link to="/login">
+                      <AccountCircleIcon
+                        sx={{ color: "rgb(255, 255, 255, 0.83)" }}
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

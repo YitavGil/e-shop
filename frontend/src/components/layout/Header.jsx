@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { backend_url } from "../../server";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import Cart from "../cart/Cart";
 
 // icons
@@ -154,7 +154,10 @@ const Header = ({ activeHeading }) => {
                 </div>
               </div>
               <div className={`${styles.noramlFlex}`}>
-                <div className="relative cursor-pointer mr-[15px]">
+                <div
+                  onClick={() => setOpenCart(true)}
+                  className="relative cursor-pointer mr-[15px]"
+                >
                   <ShoppingCartIcon
                     sx={{ color: "rgb(255, 255, 255, 0.83)" }}
                   />
@@ -175,20 +178,20 @@ const Header = ({ activeHeading }) => {
                     </Link>
                   ) : (
                     <Link to="/login">
-                   { loading ? <CircularProgress color="success" /> : <AccountCircleIcon
-                        sx={{ color: "rgb(255, 255, 255, 0.83)" }}
-                      />}
+                      {loading ? (
+                        <CircularProgress color="success" />
+                      ) : (
+                        <AccountCircleIcon
+                          sx={{ color: "rgb(255, 255, 255, 0.83)" }}
+                        />
+                      )}
                     </Link>
                   )}
                 </div>
               </div>
 
               {/* cart popup */}
-              {
-                openCart ? (
-                  <Cart setOpenCart={setOpenCart} />
-                ) : null
-              }
+              {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
             </div>
           </div>
         </div>

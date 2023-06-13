@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { backend_url } from "../../server";
 import CircularProgress from '@mui/material/CircularProgress';
+import Cart from "../cart/Cart";
 
 // icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -25,6 +26,8 @@ const Header = ({ activeHeading }) => {
   const [searchData, setSearchData] = useState("");
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
+  const [openWishlist, setOpenWishlist] = useState(false);
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -179,6 +182,13 @@ const Header = ({ activeHeading }) => {
                   )}
                 </div>
               </div>
+
+              {/* cart popup */}
+              {
+                openCart ? (
+                  <Cart setOpenCart={setOpenCart} />
+                ) : null
+              }
             </div>
           </div>
         </div>

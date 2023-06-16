@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { backend_url } from "../../server";
 import CircularProgress from "@mui/material/CircularProgress";
 import Cart from "../cart/Cart";
+import Wishlist from "../wishlist/Wishlist";
 
 // icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -144,7 +145,9 @@ const Header = ({ activeHeading }) => {
 
             <div className="flex">
               <div className={`${styles.noramlFlex}`}>
-                <div className="relative cursor-pointer mr-[15px]">
+                <div className="relative cursor-pointer mr-[15px]"
+                onClick={() => setOpenWishlist(true)}
+                >
                   <FavoriteBorderIcon
                     sx={{ color: "rgb(255, 255, 255, 0.83)" }}
                   />
@@ -192,6 +195,11 @@ const Header = ({ activeHeading }) => {
 
               {/* cart popup */}
               {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
+
+              {/* wishlist popup */}
+              {openWishlist ? (
+                <Wishlist setOpenWishlist={setOpenWishlist} />
+              ) : null}
             </div>
           </div>
         </div>

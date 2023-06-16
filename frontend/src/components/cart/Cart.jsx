@@ -61,6 +61,7 @@ const Cart = ({ setOpenCart }) => {
                 >
                   <h1 className="text-[#fff] text-[18px] font-semibold">
                     Checkout Now (USD$1000)
+                    
                   </h1>
                 </div>
               </Link>

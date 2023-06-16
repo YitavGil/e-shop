@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 // Icons
 import { RxCross1 } from "react-icons/rx";
-import { IoBagHandleOutline } from "react-icons/io5";
-import { HiOutlineMinus, HiPlus } from "react-icons/hi";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BsCartPlus } from "react-icons/bs";
 
 const WishList = ({ setOpenWishlist }) => {
   const cartData = [
@@ -39,7 +39,7 @@ const WishList = ({ setOpenWishlist }) => {
           </div>
           {/* Item length */}
           <div className={`${styles.noramlFlex} p-4`}>
-            <IoBagHandleOutline size={25} />
+            <AiOutlineHeart size={25} />
             <h5 className="pl-2 text-[20px] font-[500]">
               {cartData && cartData.length} items
             </h5>
@@ -52,19 +52,7 @@ const WishList = ({ setOpenWishlist }) => {
               cartData.map((i, index) => <CartSingle key={index} data={i} />)}
           </div>
         </div>
-
-        <div className="px-5 mb-3">
-          {/* checkout buttons */}
-          <Link to="/checkout">
-            <div
-              className={`h-[45px] flex items-center justify-center w-full bg-[#e44343] rounded-[5px]`}
-            >
-              <h1 className="text-[#fff] text-[18px] font-semibold">
-                Checkout Now (USD$1000)
-              </h1>
-            </div>
-          </Link>
-        </div>
+        
       </div>
     </div>
   );
@@ -93,7 +81,11 @@ const CartSingle = ({ data }) => {
             US${totalPrice}
           </h4>
         </div>
-      
+      <div>
+      <BsCartPlus size={20} className="cursor-pointer ml-7" tile="Add to cart"
+           onClick={() => {}}
+          />
+      </div>
       </div>
     </div>
   );

@@ -110,7 +110,7 @@ const Header = ({ activeHeading }) => {
         </div>
         <div
           className={`${
-            active ? "shadow-sm fixed w-[91.71%] top-0 left-17 z-10" : null
+            active ? "shadow-sm fixed top-0 left-0 z-10" : null
           } transition hidden sm:flex items-center justify-between w-full bg-[#2A3492] h-[70px]`}
         >
           <div

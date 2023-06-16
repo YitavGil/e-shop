@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "../../styles/styles";
+import { Link } from "react-router-dom";
 
 // Icons
 import { RxCross1 } from "react-icons/rx";
@@ -56,10 +57,10 @@ const Cart = ({ setOpenCart }) => {
               {/* checkout buttons */}
               <Link to="/checkout">
                 <div
-                  className={`h-[45px] flex items-center justify-center w-[100%] bg-[#e44343] rounded-[5px]`}
+                  className={`h-[45px] flex items-center justify-center w-full bg-[#e44343] rounded-[5px]`}
                 >
-                  <h1 className="text-[#fff] text-[18px] font-[600]">
-                    Checkout Now (USD${totalPrice})
+                  <h1 className="text-[#fff] text-[18px] font-semibold">
+                    Checkout Now (USD$1000)
                   </h1>
                 </div>
               </Link>

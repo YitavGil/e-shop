@@ -25,6 +25,9 @@ const ProductDetails = ({ data }) => {
           <div className="w-full py-5">
             <div className="block w-full sm:flex">
               <div className="w-full sm:w-1/2">
+              <img src={data?.image_Url[select]?.url} alt="" className="w-[80%]" />
+              </div>
+              <div className="w-full sm:w-1/2">
                 <div className="w-full flex">
                   <div
                     className={`${select === 0 ? "border" : ""} cursor-pointer`}

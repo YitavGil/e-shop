@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Header from '../src/components/layout/Header';
 import Footer from '../src/components/layout/Footer';
 import ProductDetails from '../src/components/products/ProductDetails';
@@ -7,19 +6,14 @@ import { productData } from '../src/static/data';
 
 const ProductDetailsPage = () => {
   const {name} = useParams();
-  const [data, setData] = useState({});
   const productName = name.replace(/-/g," ")
   
-  useEffect(() => {
-    const data = productData.find((i) => i.name === productName);
-   
-    setData(data)
-  },[])
+  const itemObject = productData.find((i) =>i.name === productName);
 
   return (
     <div>
       <Header />
-      <ProductDetails data={data} />
+      <ProductDetails data={itemObject} />
       <Footer />
     </div>
   )

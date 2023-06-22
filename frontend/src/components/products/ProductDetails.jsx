@@ -16,6 +16,24 @@ const ProductDetails = ({ data }) => {
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
 
+  const decrementCount = () => {
+    if (count > 1) {
+      setCount((prev) => prev - 1);
+    }
+  };
+
+  const incrementCount = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  const addToWishlistHandler = () => {
+    setClick(!click);
+  };
+
+  const removeFromWishlistHandler = () => {
+    setClick(!click);
+  };
+
   return (
     <div className="bg-white">
       {data ? (
@@ -67,10 +85,42 @@ const ProductDetails = ({ data }) => {
                   </h3>
                 </div>
                 <div className="flex items-center mt-12 justify-between pr-3">
-                  <div>
-                    <button className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out">-</button>
-                  </div>
+                <div>
+                  <button
+                    className="bg-gradient-to-r from-red-400 to-red-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                    onClick={decrementCount}
+                  >
+                    -
+                  </button>
+                  <span className="bg-gray-200 text-gray-800 font-medium px-4 pt-[9px] pb-[10px]">
+                    {count}
+                  </span>
+                  <button
+                    className="bg-gradient-to-r from-red-400 to-red-500 text-white font-bold rounded-r px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                    onClick={incrementCount}
+                  >
+                    +
+                  </button>
                 </div>
+                <div>
+                  {click ? (
+                    <AiFillHeart
+                      size={30}
+                      className="cursor-pointer"
+                      onClick={() => removeFromWishlistHandler(data)}
+                      color={click ? "red" : "#333"}
+                      title="Remove from wishlist"
+                    />
+                  ) : (
+                    <AiOutlineHeart
+                      size={30}
+                      className="cursor-pointer"
+                      onClick={() => addToWishlistHandler(data)}
+                      title="Add to wishlist"
+                    />
+                  )}
+                </div>
+              </div>
               </div>
             </div>
           </div>

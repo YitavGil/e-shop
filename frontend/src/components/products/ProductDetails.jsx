@@ -160,6 +160,8 @@ const ProductDetails = ({ data }) => {
               </div>
             </div>
           </div>
+
+          <ProductDetailsInfo data={data} />
         </div>
       ) : null}
     </div>
@@ -167,6 +169,32 @@ const ProductDetails = ({ data }) => {
 };
 
 export default ProductDetails;
+
+const ProductDetailsInfo = ({ data }) => {
+  const [active, setActive] = useState(1);
+  return (
+    <div className="bg-[#f5f6fb] px-3 sm:px-10 py-2 rounded">
+      <div className="w-full flex justify-between border-b pt-10 pb-2">
+      <h5
+            className={
+              "text-[#000] text-[18px] px-1 leading-5 font-[600] cursor-pointer sm:text-[20px]"
+            }
+            onClick={() => setActive(1)}
+          >
+            Product Details
+          </h5>
+          {
+            active === 1 ? (
+              <div className={`${styles.active_indicator}`} >
+
+              </div>
+
+            ) : null
+          }
+      </div>
+    </div>
+  )
+}
 
 ProductDetails.propTypes = {
   data: PropTypes.object,

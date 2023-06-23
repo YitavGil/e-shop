@@ -175,7 +175,8 @@ const ProductDetailsInfo = ({ data }) => {
   return (
     <div className="bg-[#f5f6fb] px-3 sm:px-10 py-2 rounded">
       <div className="w-full flex justify-between border-b pt-10 pb-2">
-      <h5
+        <div className="relative">
+          <h5
             className={
               "text-[#000] text-[18px] px-1 leading-5 font-[600] cursor-pointer sm:text-[20px]"
             }
@@ -183,19 +184,101 @@ const ProductDetailsInfo = ({ data }) => {
           >
             Product Details
           </h5>
-          {
-            active === 1 ? (
-              <div className={`${styles.active_indicator}`} >
-
-              </div>
-
-            ) : null
-          }
+          {active === 1 ? (
+            <div className={`${styles.active_indicator}`}></div>
+          ) : null}
+        </div>
+        <div className="relative">
+          <h5
+            className={
+              "text-[#000] text-[18px] px-1 leading-5 font-[600] cursor-pointer sm:text-[20px]"
+            }
+            onClick={() => setActive(2)}
+          >
+            Product Reviews
+          </h5>
+          {active === 2 ? (
+            <div className={`${styles.active_indicator}`}></div>
+          ) : null}
+        </div>
+        <div className="relative">
+          <h5
+            className={
+              "text-[#000] text-[18px] px-1 leading-5 font-[600] cursor-pointer sm:text-[20px]"
+            }
+            onClick={() => setActive(3)}
+          >
+            Seller Information
+          </h5>
+          {active === 3 ? (
+            <div className={`${styles.active_indicator}`}></div>
+          ) : null}
+        </div>
       </div>
+
+      {active === 1 ? (
+        <>
+          <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
+            {data.description}
+          </p>
+        </>
+      ) : null}
+      {active === 2 ? (
+        <div className="w-full flex justify-center items-center min-h-[40vh]">
+          <p>No Reviews Yet</p>
+        </div>
+      ) : null}
+      {active === 3 ? (
+        <div className="w-full block sm:flex p-5">
+          <div className="w-full sm:w-1/2">
+            <div className="flex items-center">
+              <img
+                src={data.shop.shop_avatar.url}
+                className="w-[50px] h-[50px] rounded-full"
+                alt=""
+              />
+              <div className="pl-3">
+                <h3 className={`${styles.shop_name}`}>{data.shop.name}</h3>
+                <h5 className="pb-2 text-[15px]">
+                  ({data.shop.ratings}/5) Ratings
+                </h5>
+              </div>
+            </div>
+            <p className="pt-2">{data.shop.description}</p>
+          </div>
+          <div className="w-full sm:w-1/2 mt-5 sm:mt-0 sm:flex flex-col items-end">
+            <div className="text-left">
+              <h5 className="font-[600]">
+                Joined on:{" "}
+                <span className="font-[500]">
+                  {data.shop?.createdAt?.slice(0, 10)}
+                </span>
+              </h5>
+              <h5 className="font-[600] pt-3">
+                Total Products: <span className="font-[500]">500</span>
+              </h5>
+              <h5 className="font-[600] pt-3">
+                Total Reviews: <span className="font-[500]">0</span>
+              </h5>
+              <Link to="/">
+                <div
+                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
+                >
+                  <h4 className="text-white">Visit Shop</h4>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
-  )
-}
+  );
+};
 
 ProductDetails.propTypes = {
+  data: PropTypes.object,
+};
+
+ProductDetailsInfo.propTypes = {
   data: PropTypes.object,
 };

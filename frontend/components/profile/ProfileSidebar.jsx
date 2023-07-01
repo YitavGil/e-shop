@@ -14,6 +14,9 @@ import PropTypes from "prop-types";
 
 const ProfileSidebar = ({ active, setActive }) => {
   const navigate = useNavigate();
+
+  const logoutHandler = () => {};
+
   return (
     <div className="w-full bg-white shadow-sm rounded-[10px] p-4 pt-8">
       <div
@@ -69,7 +72,7 @@ const ProfileSidebar = ({ active, setActive }) => {
         <span
           className={`pl-3 ${active === 5 ? "text-[red]" : ""} sm:block hidden`}
         >
-           Track Order
+          Track Order
         </span>
       </div>
       <div
@@ -78,9 +81,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <RiLockPasswordLine size={20} color={active === 6 ? "red" : ""} />
         <span
-          className={`pl-3 ${
-            active === 6 ? "text-[red]" : ""
-          } sm:block hidden`}
+          className={`pl-3 ${active === 6 ? "text-[red]" : ""} sm:block hidden`}
         >
           Change Password
         </span>
@@ -91,11 +92,22 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <TbAddressBook size={20} color={active === 7 ? "red" : ""} />
         <span
-          className={`pl-3 ${
-            active === 7 ? "text-[red]" : ""
-          } sm:block hidden`}
+          className={`pl-3 ${active === 7 ? "text-[red]" : ""} sm:block hidden`}
         >
           Address
+        </span>
+      </div>
+      <div
+        className="single_item flex items-center cursor-pointer w-full mb-8"
+        onClick={logoutHandler}
+      >
+        <AiOutlineLogin size={20} color={active === 8 ? "red" : ""} />
+        <span
+          className={`pl-3 ${
+            active === 8 ? "text-[red]" : ""
+          } sm:block hidden`}
+        >
+          Log out
         </span>
       </div>
     </div>

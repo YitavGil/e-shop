@@ -7,6 +7,10 @@ import {
 import { backend_url } from "../../src/server";
 import { useSelector } from "react-redux";
 import styles from "../../src/styles/styles";
+import { Button, Typography, Container } from "@mui/material";
+import { Link } from "react-router-dom";
+import { DataGrid } from "@mui/x-data-grid";
+import PropTypes from "prop-types";
 
 const ProfileContent = ({ active }) => {
   const { user } = useSelector((state) => state.user);
@@ -20,7 +24,7 @@ const ProfileContent = ({ active }) => {
   const handleImage = () => {};
 
   const handleSubmit = (e) => {
-    
+    e.preventDefault();
   };
 
   return (
@@ -51,7 +55,7 @@ const ProfileContent = ({ active }) => {
           <br />
           <br />
           <div className="w-full px-5">
-          <form onSubmit={handleSubmit} aria-required={true}>
+            <form onSubmit={handleSubmit} aria-required={true}>
               <div className="w-full sm:flex block pb-3">
                 <div className=" w-[100%] sm:w-[50%]">
                   <label className="block pb-2">Full Name</label>
@@ -99,10 +103,10 @@ const ProfileContent = ({ active }) => {
                 </div>
               </div>
               <input
-              style={{ 
-                color: '#3a24db',
-                border: '1px solid #3a24db'
-              }}
+                style={{
+                  color: "#3a24db",
+                  border: "1px solid #3a24db",
+                }}
                 className={`w-[250px] p-2 h-[40px] text-center rounded-[3px] mt-8 cursor-pointer`}
                 required
                 value="Update"
@@ -112,8 +116,109 @@ const ProfileContent = ({ active }) => {
           </div>
         </>
       )}
+
+      {/* Order page */}
+      {active === 2 && (
+        <div>
+          <AllOrders />
+        </div>
+      )}
     </div>
   );
 };
 
 export default ProfileContent;
+
+const AllOrders = () => {
+  const columns = [
+    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+
+    {
+      field: "status",
+      headerName: "Status",
+      minWidth: 130,
+      flex: 0.7,
+      renderCell: (params) => {
+        const isDelivered = params.row.status === "Delivered";
+        return (
+          <Typography sx={{ color: isDelivered ? "green" : "gray" }}>
+            {params.row.status}
+          </Typography>
+        );
+      },
+    },
+    {
+      field: "itemsQty",
+      headerName: "Items Qty",
+      type: "number",
+      minWidth: 130,
+      flex: 0.7,
+    },
+
+    {
+      field: "total",
+      headerName: "Total",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
+
+    {
+      field: " ",
+      flex: 1,
+      minWidth: 150,
+      headerName: "",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={`/user/order/${params.id}`}>
+              <Button>
+                <AiOutlineArrowRight size={20} />
+              </Button>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
+
+  const orders = [
+    {
+      id: 1,
+      orderItem: [{ name: "final fantasy VII" }],
+      totalPrice: 50,
+      status: "Processing",
+    },
+  ];
+
+  const rows = [];
+  orders &&
+    orders.forEach((item) => {
+      rows.push({
+        id: item.id,
+        itemsQty: item.orderItem.length,
+        total: "US$" + item.totalPrice,
+        status: item.status,
+      });
+    });
+
+  return (
+    <Container>
+      <div className="pl-8 pt-1">
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          disableSelectionOnClick
+          autoHeight
+        />
+      </div>
+    </Container>
+  );
+};
+
+ProfileContent.propTypes = {
+  active: PropTypes.number,
+};

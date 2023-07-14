@@ -4,6 +4,7 @@ import {
   AiOutlineCamera,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { MdTrackChanges } from "react-icons/md";
 import { backend_url } from "../../src/server";
 import { useSelector } from "react-redux";
 import styles from "../../src/styles/styles";
@@ -136,7 +137,7 @@ const ProfileContent = ({ active }) => {
         </div>
       )}
 
-      {active === 5 && (
+      {active === 6 && (
         <div>
           <TrackOrder />
         </div>
@@ -381,7 +382,7 @@ const TrackOrder = () => {
           <>
             <Link to={`/user/order/${params.id}`}>
               <Button>
-                <AiOutlineArrowRight size={20} />
+                <MdTrackChanges size={20} />
               </Button>
             </Link>
           </>
@@ -416,6 +417,28 @@ const TrackOrder = () => {
     </Container>
   );
 };
+
+const PaymentMethod = () => {
+  return (
+    <div className="w-full px-5">
+      <div className="flex w-full items-center justify-between">
+        <h1 className="text-[25px] font-semibold text-[#000000ba] pb-2">
+          Payment Method
+        </h1>
+        <div className={`${styles.button} !rounded-md`}>
+          <span className="text-[#fff]">Add New</span>
+        </div>
+      </div>
+      <br />
+      <div className="w-full bg-white h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10">
+        <div className="flex items-center">
+          <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="" />
+          <h5></h5>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 ProfileContent.propTypes = {
   active: PropTypes.number,

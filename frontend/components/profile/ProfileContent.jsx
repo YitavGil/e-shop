@@ -123,6 +123,24 @@ const ProfileContent = ({ active }) => {
           <AllOrders />
         </div>
       )}
+
+      {/* Refund page */}
+      {active === 3 && (
+        <div>
+          <AllRefundOrders />
+        </div>
+      )}
+      {active === 5 && (
+        <div>
+          <TrackOrder />
+        </div>
+      )}
+
+      {active === 5 && (
+        <div>
+          <TrackOrder />
+        </div>
+      )}
     </div>
   );
 };
@@ -205,7 +223,7 @@ const AllOrders = () => {
     });
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <div className="pl-8 pt-1">
         <DataGrid
           rows={rows}
@@ -219,7 +237,185 @@ const AllOrders = () => {
   );
 };
 
+const AllRefundOrders = () => {
+  const eligibleOrders = [
+    {
+      id: 1,
+      orderItem: [{ name: "final fantasy VII" }],
+      totalPrice: 50,
+      status: "Processing",
+    },
+  ];
+  const columns = [
+    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
 
+    {
+      field: "status",
+      headerName: "Status",
+      minWidth: 130,
+      flex: 0.7,
+      renderCell: (params) => {
+        const isDelivered = params.row.status === "Delivered";
+        return (
+          <Typography sx={{ color: isDelivered ? "green" : "gray" }}>
+            {params.row.status}
+          </Typography>
+        );
+      },
+    },
+    {
+      field: "itemsQty",
+      headerName: "Items Qty",
+      type: "number",
+      minWidth: 130,
+      flex: 0.7,
+    },
+
+    {
+      field: "total",
+      headerName: "Total",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
+
+    {
+      field: " ",
+      flex: 1,
+      minWidth: 150,
+      headerName: "",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={`/user/order/${params.id}`}>
+              <Button>
+                <AiOutlineArrowRight size={20} />
+              </Button>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
+
+  const rows = [];
+
+  eligibleOrders &&
+    eligibleOrders.forEach((item) => {
+      rows.push({
+        id: item.id,
+        itemsQty: item.orderItem.length,
+        total: "US$ " + item.totalPrice,
+        status: item.status,
+      });
+    });
+
+  return (
+    <Container maxWidth="xl">
+      <div className="pl-8 pt-1">
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          autoHeight
+          disableSelectionOnClick
+        />
+      </div>
+    </Container>
+  );
+};
+
+const TrackOrder = () => {
+  const orders = [
+    {
+      id: 1,
+      orderItem: [{ name: "final fantasy VII" }],
+      totalPrice: 50,
+      status: "Processing",
+    },
+  ];
+  const columns = [
+    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+
+    {
+      field: "status",
+      headerName: "Status",
+      minWidth: 130,
+      flex: 0.7,
+      renderCell: (params) => {
+        const isDelivered = params.row.status === "Delivered";
+        return (
+          <Typography sx={{ color: isDelivered ? "green" : "gray" }}>
+            {params.row.status}
+          </Typography>
+        );
+      },
+    },
+    {
+      field: "itemsQty",
+      headerName: "Items Qty",
+      type: "number",
+      minWidth: 130,
+      flex: 0.7,
+    },
+
+    {
+      field: "total",
+      headerName: "Total",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
+
+    {
+      field: " ",
+      flex: 1,
+      minWidth: 150,
+      headerName: "",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={`/user/order/${params.id}`}>
+              <Button>
+                <AiOutlineArrowRight size={20} />
+              </Button>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
+
+  const rows = [];
+
+  orders &&
+    orders.forEach((item) => {
+      rows.push({
+        id: item.id,
+        itemsQty: item.orderItem.length,
+        total: "US$ " + item.totalPrice,
+        status: item.status,
+      });
+    });
+
+  return (
+    <Container maxWidth="xl">
+      <div className="pl-8 pt-1 ">
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          disableSelectionOnClick
+          autoHeight
+        />
+      </div>
+    </Container>
+  );
+};
 
 ProfileContent.propTypes = {
   active: PropTypes.number,

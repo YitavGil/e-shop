@@ -199,7 +199,7 @@ const AllOrders = () => {
       rows.push({
         id: item.id,
         itemsQty: item.orderItem.length,
-        total: "US$" + item.totalPrice,
+        total: "US$ " + item.totalPrice,
         status: item.status,
       });
     });
@@ -218,6 +218,8 @@ const AllOrders = () => {
     </Container>
   );
 };
+
+
 
 ProfileContent.propTypes = {
   active: PropTypes.number,

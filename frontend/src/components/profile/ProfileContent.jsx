@@ -224,17 +224,15 @@ const AllOrders = () => {
     });
 
   return (
-    <Container maxWidth="xl">
-      <div className="pl-8 pt-1">
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={10}
-          disableSelectionOnClick
-          autoHeight
-        />
-      </div>
-    </Container>
+    <div className="pl-8 pt-1">
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        disableSelectionOnClick
+        autoHeight
+      />
+    </div>
   );
 };
 
@@ -314,17 +312,15 @@ const AllRefundOrders = () => {
     });
 
   return (
-    <Container maxWidth="xl">
-      <div className="pl-8 pt-1">
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={10}
-          autoHeight
-          disableSelectionOnClick
-        />
-      </div>
-    </Container>
+    <div className="pl-8 pt-1">
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        autoHeight
+        disableSelectionOnClick
+      />
+    </div>
   );
 };
 
@@ -404,17 +400,15 @@ const TrackOrder = () => {
     });
 
   return (
-    <Container maxWidth="xl">
-      <div className="pl-8 pt-1 ">
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={10}
-          disableSelectionOnClick
-          autoHeight
-        />
-      </div>
-    </Container>
+    <div className="pl-8 pt-1 ">
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        disableSelectionOnClick
+        autoHeight
+      />
+    </div>
   );
 };
 
@@ -469,9 +463,7 @@ const Address = () => {
     },
   ];
 
-  const handleDelete = () => {
-    
-  }
+  const handleDelete = () => {};
   return (
     <div className="w-full px-5">
       <div className="flex w-full items-center justify-between">

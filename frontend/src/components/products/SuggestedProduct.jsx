@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { productData } from "../../src/static/data";
-import styles from "../../src/styles/styles";
+import { productData } from "../../static/data";
+import styles from "../../styles/styles";
 import PropTypes from "prop-types";
-import ProductCard from "../../src/components/route/productCard/ProductCard";
+import ProductCard from "../../components/route/productCard/ProductCard";
 
 const SuggestedProduct = ({ data }) => {
   const [products, setProducts] = useState([]);

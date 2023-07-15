@@ -1,8 +1,8 @@
-import Header from '../src/components/layout/Header';
-import Footer from '../src/components/layout/Footer';
-import ProductDetails from '../src/components/products/ProductDetails';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import ProductDetails from '../components/products/ProductDetails';
 import { useParams } from 'react-router-dom';
-import { productData } from '../src/static/data';
+import { productData } from '../static/data';
 import SuggestedProduct from "../components/products/SuggestedProduct";
 
 const ProductDetailsPage = () => {

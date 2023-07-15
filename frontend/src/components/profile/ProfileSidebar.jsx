@@ -11,11 +11,27 @@ import {
 } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import PropTypes from "prop-types";
+import axios from "axios"
+import { server } from "../../server";
+import { toast } from "react-toastify";
 
 const ProfileSidebar = ({ active, setActive }) => {
   const navigate = useNavigate();
 
-  const logoutHandler = () => {};
+  const logoutHandler = () => {
+    axios
+      .get(`${server}/user/logout`, { withCredentials: true })
+      .then((res) => {
+        toast.success(res.data.message);
+        window.location.reload(true);
+        navigate("/login");
+        
+        
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
 
   return (
     <div className="w-full bg-white shadow-sm rounded-[10px] p-4 pt-8">

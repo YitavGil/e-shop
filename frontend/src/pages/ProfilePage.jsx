@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Header from "../src/components/layout/Header";
-import styles from "../src/styles/styles";
+import Header from "../components/layout/Header";
+import styles from "../styles/styles";
 import ProfileSideBar from "../components/profile/ProfileSidebar";
 import ProfileContent from "../components/profile/ProfileContent";
 

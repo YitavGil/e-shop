@@ -6,9 +6,9 @@ import ProductsPage from './pages/ProductsPage';
 import BestSellingPage from './pages/BestSellingPage';
 import EventsPage from './pages/EventsPage';
 import FAQPage from './pages/FAQPage';
-import OrderSuccessPage from "../pages/OrderSuccessPage";
-import ProductDetailsPage from "../pages/ProductDetailsPage";
-import ProfilePage from "../pages/ProfilePage";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export {
   LoginPage,

@@ -5,9 +5,9 @@ import {
   AiOutlineDelete,
 } from "react-icons/ai";
 import { MdTrackChanges } from "react-icons/md";
-import { backend_url } from "../../src/server";
+import { backend_url } from "../../server";
 import { useSelector } from "react-redux";
-import styles from "../../src/styles/styles";
+import styles from "../../styles/styles";
 import { Button, Typography, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
@@ -137,9 +137,9 @@ const ProfileContent = ({ active }) => {
         </div>
       )}
 
-      {active === 6 && (
+      {active === 7 && (
         <div>
-          <TrackOrder />
+          <Address />
         </div>
       )}
     </div>
@@ -432,13 +432,78 @@ const PaymentMethod = () => {
       <br />
       <div className="w-full bg-white h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10">
         <div className="flex items-center">
-          <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="" />
-          <h5></h5>
+          <img
+            src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg"
+            alt=""
+          />
+          <h5 className="pl-5 font-semibold">Card Name</h5>
+        </div>
+        <div className="pl-8 flex items-center">
+          <h6>1234 **** **** ****</h6>
+          <h5 className="pl-6 ">08/2026</h5>
+        </div>
+        <div className="min-w-[10%] flex items-center justify-between pl-8"></div>
+      </div>
+    </div>
+  );
+};
+
+const Address = () => {
+  const [open, setOpen] = useState(false);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState();
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [addressType, setAddressType] = useState("");
+
+  const addressTypeData = [
+    {
+      name: "Default",
+    },
+    {
+      name: "Home",
+    },
+    {
+      name: "Office",
+    },
+  ];
+
+  const handleDelete = () => {
+    
+  }
+  return (
+    <div className="w-full px-5">
+      <div className="flex w-full items-center justify-between">
+        <h1 className="text-[25px] font-semibold text-[#000000ba] pb-2">
+          My Addresses
+        </h1>
+        <div className={`${styles.button} !rounded-md`}>
+          <span className="text-[#fff]">Add New</span>
+        </div>
+      </div>
+      <br />
+      <div className="w-full bg-white h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10">
+        <div className="flex items-center">
+          <h5 className="pl-5 ml-1 font-semibold">Default Address</h5>
+        </div>
+        <div className="pl-8 flex items-center">
+          <h6>12st Rosh Ha-ayin, Israel</h6>
+        </div>
+        <div className="pl-8 flex items-center">
+          <h6>052-123654</h6>
+        </div>
+        <div className="min-w-[10%] flex items-center justify-between pl-8">
+          <AiOutlineDelete
+            size={25}
+            className="cursor-pointer"
+            onClick={() => handleDelete(item)}
+          />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 ProfileContent.propTypes = {
   active: PropTypes.number,

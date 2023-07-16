@@ -20,6 +20,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user, loading } = useSelector((state) => state.user);
@@ -29,6 +30,7 @@ const Header = ({ activeHeading }) => {
   const [dropDown, setDropDown] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -145,8 +147,9 @@ const Header = ({ activeHeading }) => {
 
             <div className="flex">
               <div className={`${styles.noramlFlex}`}>
-                <div className="relative cursor-pointer mr-[15px]"
-                onClick={() => setOpenWishlist(true)}
+                <div
+                  className="relative cursor-pointer mr-[15px]"
+                  onClick={() => setOpenWishlist(true)}
                 >
                   <FavoriteBorderIcon
                     sx={{ color: "rgb(255, 255, 255, 0.83)" }}
@@ -201,6 +204,30 @@ const Header = ({ activeHeading }) => {
                 <Wishlist setOpenWishlist={setOpenWishlist} />
               ) : null}
             </div>
+          </div>
+        </div>
+      </div>
+      {/* mobile header */}
+      <div
+        className={`${
+          active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
+        }
+      w-full h-[60px] bg-[#fff] z-50 top-0 left-0 shadow-sm sm:hidden`}
+      >
+        <div className="flex items-center justify-between border-2 p-2">
+        <div>
+            <BiMenuAltLeft
+              size={40}
+              onClick={() => setOpen(true)}
+            />
+          </div>
+          <div className="flex items-center">
+            <Link to="/">
+              <SportsEsportsIcon fontSize="large" sx={{ color: "#4FAF44" }} />
+            </Link>
+            <h3 style={{ fontFamily: "roboto" }} className="text-xl font-bold">
+              GamerLy
+            </h3>
           </div>
         </div>
       </div>

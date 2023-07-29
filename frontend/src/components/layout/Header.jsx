@@ -30,7 +30,7 @@ const Header = ({ activeHeading }) => {
   const [dropDown, setDropDown] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -215,11 +215,8 @@ const Header = ({ activeHeading }) => {
       w-full h-[60px] bg-[#fff] z-50 top-0 left-0 shadow-sm sm:hidden`}
       >
         <div className="flex items-center justify-between border-2 p-2">
-        <div>
-            <BiMenuAltLeft
-              size={40}
-              onClick={() => setOpen(true)}
-            />
+          <div>
+            <BiMenuAltLeft size={40} onClick={() => setOpen(true)} />
           </div>
           <div className="flex items-center">
             <Link to="/">
@@ -230,6 +227,16 @@ const Header = ({ activeHeading }) => {
             </h3>
           </div>
         </div>
+        {/* Header sidebar */}
+        {open && (
+          <div
+            className={`fixed w-full bg-[#0000005f] z-20 h-full top-0 left-0`}
+          >
+            <div className="fixed w-[70%] bg-[#fff] h-screen top-0 left-0 z-10 overflow-y-scroll">
+              
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

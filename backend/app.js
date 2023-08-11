@@ -1,6 +1,3 @@
-require("dotenv").config({
-  path:"backend/config/.env"
-})
 const express = require("express");
 const ErrorHandler = require("./middleware/error");
 const cookieParser = require("cookie-parser");

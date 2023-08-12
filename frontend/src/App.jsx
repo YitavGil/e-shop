@@ -13,7 +13,7 @@ import {
   ProductDetailsPage,
   ProfilePage,
   CheckoutPage,
-  ShopCreate
+  ShopCreatePage
 } from "./Routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -54,7 +54,7 @@ function App() {
             <ProfilePage />
           </ProtectedRoute>
         } />
-        <Route path="/shop-create" element={<ShopCreate />} />
+        <Route path="/shop-create" element={<ShopCreatePage />} />
       </Routes>
 
       <ToastContainer

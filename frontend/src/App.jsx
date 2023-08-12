@@ -12,6 +12,8 @@ import {
   OrderSuccessPage,
   ProductDetailsPage,
   ProfilePage,
+  CheckoutPage,
+  ShopCreate
 } from "./Routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,12 +44,19 @@ function App() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/order/success/:id" element={<OrderSuccessPage />} />
+        <Route path="/checkout" element={
+          <ProtectedRoute>
+            <CheckoutPage />
+          </ProtectedRoute>
+        }/>
         <Route path="/profile" element={
           <ProtectedRoute isAuthenticated={isAuthenticated}>
             <ProfilePage />
           </ProtectedRoute>
         } />
+        <Route path="/shop-create" element={<ShopCreate />} />
       </Routes>
+
       <ToastContainer
         position="bottom-left"
         autoClose={5000}

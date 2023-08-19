@@ -9,5 +9,15 @@ const cloudinary = require("cloudinary");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
 const sendShopToken = require("../utils/shopToken");
+const { upload } = require("../multer");
+
+router.post("/create-shop", upload.single("file"), async(req, res, next) => {
+    try {
+        const { email } = req.body;
+        const sellerEmail = await Shop.findOne({ email });
+    } catch (error) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+})
 
 module.exports = router;

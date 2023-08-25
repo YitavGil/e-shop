@@ -17,7 +17,34 @@ const ShopCreate = () => {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    axios
+    .post(`${server}/shop/create-shop`, {
+      name,
+      email,
+      password,
+      avatar,
+      zipCode,
+      address,
+      phoneNumber,
+    })
+    .then((res) => {
+      toast.success(res.data.message);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setAvatar();
+      setZipCode();
+      setAddress("");
+      setPhoneNumber();
+    })
+    .catch((error) => {
+      toast.error(error.response.data.message);
+    });
+};
+  };
+
   const handleFileInputChange = (e) => {
     const file = e.target.files[0]
     setAvatar(file)

@@ -19,30 +19,42 @@ const ShopCreate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const cofig = { headers: { "Content-Type": "multipart/form-data"}}
+
+    const newForm = new FormData();
+
+    newForm.append('file', avatar);
+    newForm.append('name', name);
+    newForm.append('email', email);
+    newForm.append('password', password);
+    newForm.append('zipcode', zipCode);
+    newForm.append('address', address);
+    newForm.append('phoneNumber', phoneNumber);
+
     axios
-    .post(`${server}/shop/create-shop`, {
-      name,
-      email,
-      password,
-      avatar,
-      zipCode,
-      address,
-      phoneNumber,
-    })
-    .then((res) => {
-      toast.success(res.data.message);
-      setName("");
-      setEmail("");
-      setPassword("");
-      setAvatar();
-      setZipCode();
-      setAddress("");
-      setPhoneNumber();
-    })
-    .catch((error) => {
-      toast.error(error.response.data.message);
-    });
-};
+      .post(`${server}/shop/create-shop`, {
+        name,
+        email,
+        password,
+        avatar,
+        zipCode,
+        address,
+        phoneNumber,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
+        setZipCode();
+        setAddress("");
+        setPhoneNumber();
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   const handleFileInputChange = (e) => {

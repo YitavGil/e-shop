@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
   LoginPage,
   SignupPage,
@@ -27,16 +27,13 @@ import { useSelector } from "react-redux";
 
 function App() {
   const { loading, isAuthenticated } = useSelector((state) => state.user);
-  const { isSeller, seller } = useSelector((state) => state.user);
-  const vanigate = useNavigate();
+  const { isSeller, isLoading } = useSelector((state) => state.seller);
 
   useEffect(() => {
     store.dispatch(loadUser());
     store.dispatch(loadSeller());
 
-    if(isSeller) {
-      navigate(`/shop/${seller._id}`)
-    }
+
   }, []);
   return (
     <BrowserRouter>

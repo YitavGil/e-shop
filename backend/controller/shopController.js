@@ -148,7 +148,7 @@ router.post(
 // load shop
 router.get(
   "/getSeller",
-  isAuthenticated,
+  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const seller = await Shop.findById(req.seller._id);

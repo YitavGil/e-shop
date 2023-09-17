@@ -20,17 +20,22 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "./redux/store";
-import { loadUser } from "./redux/actions/userActions";
-import { loadSeller } from "./redux/actions/sellerActions";
+import { loadUser, loadSeller } from "./redux/actions/userActions";
+// import { loadSeller } from "./redux/actions/sellerActions";
 import ProtectedRoute from "./protectedRoute";
 import { useSelector } from "react-redux";
 
 function App() {
-  const { loading, isAuthenticated } = useSelector((state) => state.user)
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { isSeller, seller } = useSelector((state) => state.user)
 
   useEffect(() => {
     store.dispatch(loadUser());
     store.dispatch(loadSeller());
+
+    if(isSeller) {
+      navigate("/seller")
+    }
   }, []);
   return (
     <BrowserRouter>

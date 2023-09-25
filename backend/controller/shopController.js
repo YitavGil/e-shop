@@ -29,8 +29,10 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
         .json({ msg: "This email address is already being used." });
     }
 
-    const filename = req.file.filename;
-    const fileUrl = path.join(filename);
+    // const filename = req.file.filename;
+    // const fileUrl = path.join(filename);
+
+    console.log(req.body);
 
     const seller = {
       name: req.body.name,

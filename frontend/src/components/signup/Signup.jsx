@@ -24,6 +24,7 @@ const Signup = () => {
     e.preventDefault();
     const newForm = new FormData();
     const config = { headers: { "Content-Type": "multipart/form-data" } };
+    
 
     newForm.append("file", avatar);
     newForm.append("name", name);

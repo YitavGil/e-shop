@@ -12,6 +12,8 @@ const sendShopToken = require("../utils/shopToken");
 const { upload } = require("../multer");
 
 router.post("/create-shop", upload.single("file"), async (req, res, next) => {
+  console.log(req.body);
+  console.log("req.file", req.file);
   try {
     const { email } = req.body;
     const sellerEmail = await Shop.findOne({ email });
@@ -29,19 +31,14 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
         .json({ msg: "This email address is already being used." });
     }
 
-    // const filename = req.file.filename;
-    // const fileUrl = path.join(filename);
-
-    console.log(req.body);
+    const filename = req.file.filename;
+    const fileUrl = path.join(filename);
 
     const seller = {
       name: req.body.name,
       email: email,
       password: req.body.password,
-      avatar: {
-        public_id: myCloud.public_id,
-        url: myCloud.secure_url,
-      },
+      avatar: fileUrl,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
       zipCode: req.body.zipCode,
@@ -63,9 +60,11 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
       return next(new ErrorHandler(error.message, 500));
     }
   } catch (error) {
+    console.log("error", error);
     return next(new ErrorHandler(error.message, 400));
   }
 });
+
 
 // create activation token
 const createActivationToken = (user) => {

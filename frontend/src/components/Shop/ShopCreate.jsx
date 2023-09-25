@@ -20,7 +20,7 @@ const ShopCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const cofig = { headers: { "Content-Type": "multipart/form-data"}}
+    const config = { headers: { "Content-Type": "multipart/form-data"}}
 
     const newForm = new FormData();
 
@@ -33,21 +33,13 @@ const ShopCreate = () => {
     newForm.append('phoneNumber', phoneNumber);
 
     axios
-      .post(`${server}/shop/create-shop`, {
-        name,
-        email,
-        password,
-        avatar,
-        zipCode,
-        address,
-        phoneNumber,
-      })
+      .post(`${server}/shop/create-shop`,newForm, config)
       .then((res) => {
         toast.success(res.data.message);
         setName("");
         setEmail("");
         setPassword("");
-        setAvatar();
+        setAvatar(null);
         setZipCode();
         setAddress("");
         setPhoneNumber();
@@ -58,10 +50,11 @@ const ShopCreate = () => {
   };
 
   const handleFileInputChange = (e) => {
-    const file = e.target.files[0]
-    setAvatar(file)
+    const file = e.target.files[0];
+   
+    setAvatar(file);
   };
-
+ 
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

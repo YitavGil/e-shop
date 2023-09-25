@@ -12,8 +12,6 @@ const sendShopToken = require("../utils/shopToken");
 const { upload } = require("../multer");
 
 router.post("/create-shop", upload.single("file"), async (req, res, next) => {
-  console.log(req.body);
-  console.log("req.file", req.file);
   try {
     const { email } = req.body;
     const sellerEmail = await Shop.findOne({ email });
@@ -60,7 +58,6 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
       return next(new ErrorHandler(error.message, 500));
     }
   } catch (error) {
-    console.log("error", error);
     return next(new ErrorHandler(error.message, 400));
   }
 });
